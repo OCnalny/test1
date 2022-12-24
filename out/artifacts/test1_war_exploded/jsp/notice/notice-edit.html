@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    <meta charset="UTF-8">
+    <title>人事管理系统</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../../static/css/font.css">
+    <link rel="stylesheet" href="../../static/css/xadmin.css">
+     <script src="../../static/js/jquery-1.12.4.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../../static/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../../static/js/xadmin.js"></script>
+  </head>
+  
+  <body>
+    <div class="x-body">
+        <form class="layui-form">
+          <input type="hidden" id="id" name="id"/>
+           <div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>公告标题
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="name" name="name" lay-verify="required" 
+                        autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+
+            <div class="layui-form-item">
+            	<label class="layui-form-label">
+                    <span class="x-red">*</span>公告类别
+                </label>
+                <div class="layui-input-inline">
+		          <select name="typeId" id="typeId" lay-verify="required">
+		          <option value="">公告类别</option>
+		
+		          </select>
+	          </div>
+	        </div>
+	         <div class="layui-form-item">
+            	<label class="layui-form-label">
+                    <span class="x-red">*</span>公告内容
+                </label>
+	        </div>
+	        <div class="layui-form-item">
+	 		<textarea id="demo" style="display: none;" name="content"></textarea>
+	 		</div>
+          <div class="layui-form-item">
+              <label for="L_repass" class="layui-form-label">
+              </label>
+              <button  class="layui-btn" lay-filter="add" lay-submit="">
+                &nbsp;&nbsp;提交&nbsp;&nbsp;
+              </button>
+          </div>
+      </form>
+    </div>
+    <script>
+      layui.use(['form','layer','layedit'], function(){
+         var $ = layui.jquery;
+        var form = layui.form
+        ,layer = layui.layer
+        ,layedit = layui.layedit;
+        
+        var data = JSON.parse(localStorage.getItem("data"));// JSno字符串转为对象
+        
+        var myLayedit = layedit.build('demo', {
+        	  tool: ['strong' //加粗
+        		  ,'italic' //斜体
+        		  ,'underline' //下划线
+        		  ,'del' //删除线
+        		  ,'|','left', 'center', 'right', '|', 'face']
+        }); //建立编辑器
+      layedit.setContent(myLayedit,data.content);
+      $("#name").val(data.name);
+      $("#id").val(data.id);
+      form.render();//重载表单
+        //自定义验证规则
+        form.verify({
+          nikename: function(value){
+            if(value.length < 2){
+              return '昵称至少得2个字符啊';
+            }
+          }
+        });
+      
+      
+      //搜索公告类别下拉框
+        $.ajax({
+          url: '../../getAllType.action',
+          type: 'get',
+          success: function (dat) {
+            $.each(JSON.parse(dat), function (index, item) {
+              $('#typeId').append(new Option(item.name, item.id));// 下拉菜单里添加元素
+            });
+            $("#typeId").val(data.typeId);
+            layui.form.render("select");
+          }
+        })
+
+        //监听提交
+        form.on('submit(add)', function(data){
+        	var content = layedit.getContent(myLayedit);
+        	var typeId = $('#typeId').val();
+        	var name = $('#name').val();
+        	var id = $('#id').val();
+            $.ajax({
+                url: '../../updNotice.action',
+                type: 'post',
+                data: {content,typeId,name,id},
+                success: function (data) {
+                    if (data == 1) {
+                        layer.alert("修改成功", {icon: 6},function () {
+                            // 获得frame索引
+                            var index = parent.layer.getFrameIndex(window.name);
+                            //关闭当前frame
+                            parent.layer.close(index);
+                            //修改成功后刷新父界面
+                            window.parent.location.reload();
+                        });
+                    }
+                    else {
+                        layer.alert("修改失败！")
+                    }
+                },
+                error: function (e) {
+                    layer.alert("error！提交失败！")
+                },
+
+            });
+          return false;
+        });
+        
+        
+      });
+  </script>
+   
+  </body>
+
+</html>

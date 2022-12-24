@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    <meta charset="UTF-8">
+    <title>人事管理系统</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../../static/css/font.css">
+    <link rel="stylesheet" href="../../static/css/xadmin.css">
+     <script src="../../static/js/jquery-1.12.4.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../../static/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../../static/js/xadmin.js"></script>
+  </head>
+  
+  <body>
+    <div class="x-body">
+        <form class="layui-form">
+          <input type="hidden" id="id" name="id"/>
+          
+             <div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>姓名
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="name" name="name" lay-verify="required" 
+                        autocomplete="off" class="layui-input">
+                </div>
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>身份证号
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="cardId" name="cardId" lay-verify="required" 
+                        autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">
+                    <span class="x-red">*</span>性别
+                </label>
+                <div class="layui-input-inline">
+		          <select name="sex" id="sex">
+		          <option value="">性别</option>
+					<option value="1">男</option>
+		            <option value="0">女</option>
+		          </select>
+		        </div>
+		        <label class="layui-form-label">
+                    <span class="x-red">*</span>职位
+                </label>
+                <div class="layui-input-inline">
+		          <select name="jobId" id="jobId">
+		          <option value="">职位</option>
+		
+		          </select>
+		        </div>
+            </div>
+            
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>学历
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="education" name="education" lay-verify="required" 
+                        autocomplete="off" class="layui-input">
+                </div>
+                <label  class="layui-form-label">
+                    <span class="x-red">*</span>邮箱
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="email" name="email" lay-verify="email"
+                        autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            
+            <div class="layui-form-item">
+                <label  class="layui-form-label">
+                    <span class="x-red">*</span>手机号
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="phone" name="phone" lay-verify="required|phone"
+                        autocomplete="off" class="layui-input">
+                </div>
+                <label  class="layui-form-label">
+                    <span class="x-red">*</span>电话
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="tel" name="tel" lay-verify="required" 
+                        autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            
+            <div class="layui-form-item">
+                <label  class="layui-form-label">
+                    <span class="x-red">*</span>政治面貌
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="party" name="party" lay-verify="required" 
+                        autocomplete="off" class="layui-input">
+                </div>
+                <label  class="layui-form-label">
+                    <span class="x-red">*</span>QQ号码
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="qqNum" name="qqNum" lay-verify="required" 
+                        autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            
+            <div class="layui-form-item">
+                <label  class="layui-form-label">
+                    <span class="x-red">*</span>联系地址
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="address" name="address" lay-verify="required" 
+                        autocomplete="off" class="layui-input">
+                </div>
+                <label  class="layui-form-label">
+                    <span class="x-red">*</span>邮政编码
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="postCode" name="postCode" lay-verify="required" 
+                        autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            
+            <div class="layui-form-item">
+                <label  class="layui-form-label">
+                    <span class="x-red">*</span>出生日期
+                </label>
+                <div class="layui-input-inline">
+			        <input type="text" name="birthday" id="birthday" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+			      </div>
+                <label  class="layui-form-label">
+                    <span class="x-red">*</span>民族
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="race" name="race" lay-verify="required" 
+                        autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            
+            <div class="layui-form-item">
+                <label  class="layui-form-label">
+                    <span class="x-red">*</span>所学专业
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="speciality" name="speciality" lay-verify="required" 
+                        autocomplete="off" class="layui-input">
+                </div>
+                <label  class="layui-form-label">
+                    <span class="x-red">*</span>爱好
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="hobby" name="hobby" lay-verify="required" 
+                        autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            
+            <div class="layui-form-item">
+                <label  class="layui-form-label">
+                    <span class="x-red">*</span>备注
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="remark" name="remark" lay-verify="required" 
+                        autocomplete="off" class="layui-input">
+                </div>
+                <label  class="layui-form-label">
+                    <span class="x-red">*</span>所属部门
+                </label>
+                <div class="layui-input-inline">
+		          <select name="deptId" id="deptId">
+		          <option value="">所属部门</option>
+		
+		          </select>
+        </div>
+            </div>
+            
+            
+          <div class="layui-form-item">
+              <label class="layui-form-label">
+              </label>
+              <button id="submit"  class="layui-btn" lay-filter="add" lay-submit="submit">
+                &nbsp;&nbsp;提交&nbsp;&nbsp;
+              </button>
+          </div>
+      </form>
+    </div>
+    <script>
+      layui.use(['form','layer','laydate'], function(){
+          $ = layui.jquery;
+        var form = layui.form
+        ,layer = layui.layer
+        ,laydate = layui.laydate;
+        
+      //日期
+        laydate.render({
+          elem: '#birthday'
+        });
+      
+      
+        var data = JSON.parse(localStorage.getItem("data"));// JSno字符串转为对象
+      //搜索框职位下拉框
+        $.ajax({
+          url: '../../getAllJob.action',
+          type: 'get',
+          success: function (dat) {
+            $.each(JSON.parse(dat), function (index, item) {
+              $('#jobId').append(new Option(item.name, item.id));// 下拉菜单里添加元素
+            });
+            $("#jobId").val(data.jobId);
+            layui.form.render("select");
+          }
+        })
+        
+         //搜索框部门下拉框
+        $.ajax({
+          url: '../../getAllDept.action',
+          type: 'get',
+          success: function (dat) {
+            $.each(JSON.parse(dat), function (index, item) {
+              $('#deptId').append(new Option(item.name, item.id));// 下拉菜单里添加元素
+            });
+            $("#deptId").val(data.deptId);
+            layui.form.render("select");
+          }
+        })
+
+      
+      $("#name").val(data.name);
+      $("#cardId").val(data.cardId);
+      $("#sex").val(data.sex);
+      $("#education").val(data.education);
+      $("#email").val(data.email);
+      $("#phone").val(data.phone);
+      $("#tel").val(data.tel);
+      $("#party").val(data.party);
+      $("#qqNum").val(data.qqNum);
+      $("#hobby").val(data.hobby);
+      $("#speciality").val(data.speciality);
+      $("#remark").val(data.remark);
+      $("#birthday").val(data.birthday);
+      $("#race").val(data.race);
+      $("#postCode").val(data.postCode);
+      $("#address").val(data.address);
+      $("#id").val(data.id);
+      form.render();//重载表单
+        //自定义验证规则
+        form.verify({
+          nikename: function(value){
+            if(value.length < 2){
+              return '昵称至少得2个字符啊';
+            }
+          }
+        });
+
+        //监听提交
+        form.on('submit(add)', function(data){
+            $.ajax({
+                url: '../../updEmployee.action',
+                type: 'post',
+                data: data.field,
+                success: function (data) {
+                    if (data == 1) {
+                        layer.alert("修改成功", {icon: 6},function () {
+                            // 获得frame索引
+                            var index = parent.layer.getFrameIndex(window.name);
+                            //关闭当前frame
+                            parent.layer.close(index);
+                            //修改成功后刷新父界面
+                            window.parent.location.reload();
+                        });
+                    }
+                    else {
+                        layer.alert("修改失败！")
+                    }
+                },
+                error: function (e) {
+                    layer.alert("error！提交失败！")
+                },
+
+            });
+          return false;
+        });
+        
+        
+      });
+      
+      $("#cardId").keyup(function(){
+      	var cardId=$(this).val();
+      	var id = $('#id').val();
+          $.ajax({
+              url:"../../checkCardId.action",
+              type:"get",
+              data:{"cardId":cardId,"id":id},
+              success:function(data){
+               if(data==1){
+                //开启提交按钮
+              	$("#submit").removeClass("layui-btn-disabled").attr("disabled",false);
+               }else {
+              layer.msg('该身份证号已存在',{icon:7});
+                //把提交按钮关闭
+                $("#submit").addClass("layui-btn-disabled").attr("disabled",true)
+                
+               }
+
+              },
+              error:function(){
+               alert("执行异常!");
+              }
+             })
+      })
+  </script>
+   
+  </body>
+
+</html>
